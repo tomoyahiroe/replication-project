@@ -2,6 +2,18 @@
 
 # 実行方法
 
-ターミナル等で `R` 対話型シェルに入り、`source("src/command/run.R")`を実行。
+```shell
+R
+```
+
+```R
+source("src/admin/packages/admin.R")
+source("src/admin/initialize/admin.R")
+source("src/admin/master/admin.R")
+```
 
 # ディレクトリ構造
+
+# 参考
+
+このリポジトリは、[Peanuts-Data-Project](https://github.com/Chishio318/Peanuts-Data-Project)を参考にして作成しました。
