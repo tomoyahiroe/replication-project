@@ -1,0 +1,32 @@
+main <- function(){
+  semester_data_1 <- readr::read_csv(basics$get_absolute_path("data/raw-data/semester_dummy/semester_data_1.csv")) %>%
+    make_first_row_colnames() %>%
+    convert_chr_to_double("unitid") %>%
+    dplyr::mutate(semester = as.double(semester) ) %>%
+    dplyr::mutate(quarter = as.double(quarter) ) %>%
+    dplyr::mutate(year = as.double(year) ) %>%
+    .[,-6]
+
+  semester_data_2 <- readr::read_csv(basics$get_absolute_path("data/raw-data/semester_dummy/semester_data_2.csv")) %>%
+    dplyr::rename_with(., ~ c("unitid","instnm", "semester", "quarter", "year", "Y") ) %>%
+    .[-1,] %>% .[,-6]
+
+  semester_data <- semester_data_2 %>%
+    dplyr::bind_rows(semester_data_1, .)
+}
+
+make_first_row_colnames <- function(df){
+  new_colnames <- df[1,] %>% unlist(., use.names=FALSE)
+  df %>% 
+    dplyr::rename_with(., ~ new_colnames) %>%
+    dplyr::slice(-1) %>%
+    return()
+}
+
+convert_chr_to_double <- function(df, colname) {
+  df %>% dplyr::mutate(!!colname = as.double(!!colname)) %>%
+    return()
+}
+
+box::use(functions/basics)
+main()
