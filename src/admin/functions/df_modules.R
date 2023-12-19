@@ -35,6 +35,19 @@ set_column_names<- function(df, colnames_vector){
 }
 
 #' @export
+change_column_name <- function(df, target_column, new_column_name){
+## change column name
+ #
+ # @var df tibble
+ # @var target_column character of target column name
+ # @var new_column_name character of new column name
+ # @return tibble
+ ##
+  box::use(magrittr[`%>%`])
+  df %>% dplyr::rename(!!new_column_name := {{target_column}}) %>% return()
+}
+
+#' @export
 remove_colomn <- function(df, colname) {
 ## remove column
  #
