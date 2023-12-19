@@ -58,3 +58,29 @@ remove_colomn <- function(df, colname) {
   box::use(magrittr[`%>%`])
   df %>% dplyr::select(-{{colname}}) %>% return()
 }
+
+#' @export
+convert_float_to_3digits <- function(df, colnames_vector) {
+## convert values of columns to double type with 3 digits
+ #
+ # @var df tibble
+ # @var colnames_vector vector of column names
+ # @return tibble
+ ##
+  box::use(magrittr[`%>%`])
+  # use round
+  df %>% dplyr::mutate(across(all_of(colnames_vector), ~ round(., digits = 3))) %>% return()
+  # df %>% dplyr::mutate(across(all_of(colnames_vector), ~ format(.,nsmall = 3))) %>% return()
+}
+
+#' @export
+remove_na_rows <- function(df, colnames_vector) {
+## remove rows with NA values
+ #
+ # @var df tibble
+ # @var colnames_vector vector of column names
+ # @return tibble
+ ##
+  box::use(magrittr[`%>%`])
+  df %>% tidyr::drop_na(all_of(colnames_vector)) %>% return()
+}
