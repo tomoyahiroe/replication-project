@@ -2,6 +2,21 @@
 
 This repository is for my assignment of 'Data Science: intermediate'. I heavily referenced [Peanuts-Data-Project](https://github.com/Chishio318/Peanuts-Data-Project) to create this project. Therefore, This repository have similar strucuture to Peanuts-data-Project.
 
+## 提出物の確認方法
+
+1. `git clone` で、このリポジトリを自分の環境に落とす
+2. R のバージョンを 4.3 以上にする
+3. 以下のコードを、R RISP 環境もしくは RStudio コンソールで実行
+
+```R
+source("src/admin/master/admin.R")
+```
+
+4. `src/build/[各課題フォルダ]/output/`に最新のデータが rda 形式で生成されます。
+5. 最終的なデータは、`src/build/master/output/master.rda` に格納予定です。
+
+本来は `.gitignore` した方が良いと思うのですが、課題で結果のデータがあらかじめ github に上がっていた方が確認しやすいかなと思ったので、output フォルダにはあらかじめ自分が実行した結果得られたデータが格納されています。
+
 ## How to check the result
 
 1. set the repository root as working directly

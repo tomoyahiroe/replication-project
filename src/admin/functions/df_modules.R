@@ -19,7 +19,7 @@ convert_to_double <- function(df, colnames_vector) {
  # @return tibble
  ##
   box::use(magrittr[`%>%`])
-  df %>% dplyr::mutate(across(all_of(colnames_vector), as.double)) %>% return()
+  df %>% dplyr::mutate_if(across(all_of(colnames_vector), as.double)) %>% return()
 }
 
 #' @export
@@ -83,4 +83,16 @@ remove_na_rows <- function(df, colnames_vector) {
  ##
   box::use(magrittr[`%>%`])
   df %>% tidyr::drop_na(all_of(colnames_vector)) %>% return()
+}
+
+#' @export
+convert_na_to_zero <- function(df, colnames_vector) {
+## convert NA values to 0
+ #
+ # @var df tibble
+ # @var colnames_vector vector of column names
+ # @return tibble
+ ##
+  box::use(magrittr[`%>%`])
+  df %>% dplyr::mutate(across(all_of(colnames_vector), ~ tidyr::replace_na(., "0"))) %>% return()
 }
