@@ -1,16 +1,35 @@
-# 中級ミクロデータサイエンス課題
+# Replication Project
 
-# 参考
+This repository is for my assignment of 'Data Science: intermediate'. I heavily referenced [Peanuts-Data-Project](https://github.com/Chishio318/Peanuts-Data-Project) to create this project. Therefore, This repository have similar strucuture to Peanuts-data-Project.
 
-このリポジトリは、[Peanuts-Data-Project](https://github.com/Chishio318/Peanuts-Data-Project)を参考にして作成しました。
+## How to check the result
 
-# ソースコード内のコメントについて
+1. set the repository root as working directly
+2. excute `R` in terminal or focus on your RStudio console
+3. excute the command bellow to load the initial settings
 
-## R 言語に対する不満
+```R
+source("src/admin/initialize/admin.R")
+```
 
-多くの言語で Docs コメントを書く習慣があると思います。特定のライブラリを用いるとコメントから自動的にドキュメントを生成してくれるという利点だけでなく、コードレビュワーがコメントの内容とコードの内容を比較することで未然にバグを防いだり、可読性が上がったりと良いことが多いと個人的には思っています。
+4. excute the command bellow to run the whole build script.
 
-例えば、PHP であれば PHPDocs があります。
+```R
+source("src/admin/master/admin.R")
+```
+
+## Complaints about R and RStudio
+
+### 1. RStudio is not vim editor
+
+RStudio is a super convenient IDE. However, it's not vim editor.
+So, I stoped using RStudio as much as possible. And now, I use Neovim!
+There are no need to leave my hands from keyoboard. Instead, I can't see plots immediately because Neovim is CLI editor.
+
+### 2. RDocs
+
+Recently, many programming languages have libraries for docs comment. For example, PHPDocs is the docs comment library in PHP.
+The comment looks like bellow:
 
 ```php
 /**
@@ -29,25 +48,10 @@ function count(array $items, bool $recursive = false)
 }
 ```
 
-[コード引用元](https://docs.phpdoc.org/3.0/guide/references/phpdoc/tags/param.html#param)
+[Source](https://docs.phpdoc.org/3.0/guide/references/phpdoc/tags/param.html#param)
 
-このようなことができるパッケージが欲しいと個人的には思います。(自分で作れよと言われたら辛い)
+I eagerly want the library like this for R.
 
-## このリポジトリでもコメント方法
+### 3. Formatter for R
 
-このリポジトリでは、純粋関数には関数のブラケット内にコメントを書いています。
-
-```R
-get_absolute_path = function(path) {
-## recieve a path from repository root, and return the absolute path
- #
- # @var path string
- # @return string
- ##
-  return( here::here(path) )
-}
-```
-
-# 課題点
-
-R には言語標準のフォーマッター、もしくは、デファクトスタンダードとなっているフォーマッターが存在しないようです。formatR というパッケージは存在しますが、他の言語のフォーマッターと比較すると機能に不十分な点があります。
+No formatter, No coding.

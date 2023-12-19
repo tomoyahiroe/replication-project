@@ -1,3 +1,9 @@
+## Build semester dummy tidy data
+##
+## - Read in semester dummy data
+## - Convert to tidy format
+## - Save as RDA file
+
 main <- function(){
   semester_data_1 <- readr::read_csv(basics$get_absolute_path("data/raw-data/semester_dummy/semester_data_1.csv")) %>%
     make_first_row_colnames() %>%
