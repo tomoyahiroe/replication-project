@@ -21,17 +21,13 @@ source("src/admin/master/admin.R")
 
 1. set the repository root as working directly
 2. excute `R` in terminal or focus on your RStudio console
-3. excute the command bellow to load the initial settings
-
-```R
-source("src/admin/initialize/admin.R")
-```
-
-4. excute the command bellow to run the whole build script.
+3. excute the command bellow
 
 ```R
 source("src/admin/master/admin.R")
 ```
+
+4. That's it!
 
 ## Complaints about R and RStudio
 
