@@ -14,7 +14,7 @@ main <- function(){
     purrr::map_df(readxl::read_excel) %>%
     df_modules$convert_to_double(c("totcohortsize","m_4yrgrads")) %>%
     dplyr::mutate(w_4yrgrads = tot4yrgrads - m_4yrgrads) %>%
-    dplyr::mutate(woman_gradrate_4yr = woman_gradrate_4yr * 0.01)
+    dplyr::mutate(women_gradrate_4yr = women_gradrate_4yr * 0.01)
 
   save(gradrate_data, file = basics$get_absolute_path("src/build/gradrate_tidy/output/gradrate_data.rda"))
 }

@@ -31,7 +31,7 @@ set_column_names<- function(df, colnames_vector){
  # @return tibble
  ##
   box::use(magrittr[`%>%`])
-  df %>% dplyr::rename_with(., ~ colnames) %>% return()
+  df %>% dplyr::rename_with(., ~ colnames_vector) %>% return()
 }
 
 #' @export

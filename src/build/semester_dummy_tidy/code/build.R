@@ -15,11 +15,11 @@ main <- function(){
   semester_data_2 <- readr::read_csv(basics$get_absolute_path("data/raw-data/semester_dummy/semester_data_2.csv")) %>%
     df_modules$set_column_names(colnames)
 
-  semester_data <- semester_data_2 %>%
+  semester_dummy_data <- semester_data_2 %>%
     dplyr::bind_rows(semester_data_1, .) %>%
     df_modules$remove_colomn("Y")
 
-  save(semester_data, file = basics$get_absolute_path("src/build/semester_dummy_tidy/output/semester_data.rda"))
+  save(semester_dummy_data, file = basics$get_absolute_path("src/build/semester_dummy_tidy/output/semester_dummy_data.rda"))
 
 }
 
