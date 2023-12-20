@@ -1,25 +1,17 @@
 main <- function(){
-  # initialize_renv()
-  packages_list() -> lists
-  update_list(lists)
+  install.packages(dev_dependencies_list())
+  install.packages(dependencies_list())
+  renv::restore()
 }
 
-initialize_renv <- function(){
-  install.packages("renv")
-  renv::init(bare = TRUE)
-}
 
-packages_list <- function(){
-  lists <- c("tidyverse",
-             "here",
-             "devtools",
-             "box")
+dependencies_list <- function(){
+  lists <- c("tidyverse")
   return(lists)
 }
-
-update_list <- function(lists){
-  install.packages(lists)
-  renv::snapshot()
+dev_dependencies_list <- function(){
+  lists <- c("renv", "devtools", "box")
+  return(lists)
 }
 
 main()
