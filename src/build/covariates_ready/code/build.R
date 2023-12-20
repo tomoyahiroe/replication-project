@@ -5,8 +5,17 @@
 
 main <- function(){
   load(basics$get_absolute_path("src/build/covariates_tidy/output/covariates_data.rda")) # load covariates_data
+  load(basics$get_absolute_path("src/build/gradrate_ready/output/gradrate_ready_data.rda")) # load gradrate_ready_data
+  load(basics$get_absolute_path("src/build/semester_dummy_tidy/output/semester_data.rda")) # load semester_dummy_data
 
-  covariates_ready_data <- covariates_tidy %>%
+  duplicated_year_list <- unique(append(gradrate_ready_data$year, semester_data$year))
+  year_duration <- min(duplicated_year_list):max(duplicated_year_list)
+
+  unitid_list <- unique(gradrate_ready_data$unitid)
+
+  covariates_ready_data <- covariates_data %>% 
+    dplyr::filter(year %in% year_duration) %>%
+    dplyr::filter(unitid %in% unitid_list)
 
   save(covariates_ready_data, file = basics$get_absolute_path("src/build/covariates_ready/output/covariates_ready_data.rda"))
 }
