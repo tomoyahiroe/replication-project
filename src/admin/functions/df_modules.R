@@ -7,7 +7,7 @@ convert_to_char <- function(tibble, colnames_vector) {
  # @return tibble
  ##  
   box::use(magrittr[`%>%`])
-  tibble %>% dplyr::mutate(across(all_of(colnames_vector), as.character)) %>% return()
+  tibble %>% dplyr::mutate(across(colnames_vector, as.character)) %>% return()
 }
 
 #' @export
@@ -19,7 +19,7 @@ convert_to_double <- function(df, colnames_vector) {
  # @return tibble
  ##
   box::use(magrittr[`%>%`])
-  df %>% dplyr::mutate_if(across(all_of(colnames_vector), as.double)) %>% return()
+  df %>% dplyr::mutate(across(colnames_vector, as.double)) %>% return()
 }
 
 #' @export
