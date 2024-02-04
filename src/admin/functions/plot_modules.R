@@ -19,5 +19,5 @@ plot_scatter <- function(data, x_col, y_col, x_label, y_label, title) {
   ggplot2::ggplot(data, ggplot2::aes(x = !!x, y = !!y)) +
 		ggplot2::geom_point() +
 		ggplot2::labs(title = title, x = x_label, y = y_label) +
-		ggplot2::theme(panel.background = ggplot2::element_blank(), text = ggplot2::element_text(size = 24))
+		ggplot2::theme(panel.background = ggplot2::element_blank(), text = ggplot2::element_text(size = 12))
 }
