@@ -14,7 +14,7 @@ main <- function() {
     dplyr::mutate(white_cohort_rate = ifelse(totcohortsize > 0, white_cohortsize / totcohortsize * 0.01, NA)) %>%
     df_modules$convert_float_to_3digits(c("white_cohort_rate")) # convert white_cohort_rate to 3 digits
   # save master_data
-  save(master_data, file = basics$get_absolute_path("src/build/master/output/master_data.rda"))
+  write.csv(master_data, file = basics$get_absolute_path("src/build/master/output/master_data.csv"))
 }
 
 box::use(functions/basics)
