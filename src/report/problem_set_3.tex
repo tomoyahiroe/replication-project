@@ -1,0 +1,49 @@
+
+\documentclass[a4paper]{jsarticle}
+\setlength{\baselineskip}{16pt}
+\setlength{\parskip}{6mm}
+
+% Packages
+\usepackage[top = 20truemm, bottom = 20truemm, left = 30truemm, right = 30truemm]{geometry}
+\usepackage{amsmath} % For mathematical equations
+\usepackage{cite} % For citations
+\usepackage{hyperref} % For hyperlinks
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{here} % For figure placement
+
+% Title and author
+\title{中級ミクロデータサイエンス期末課題\\Problem Set 3}
+\author{横浜国立大学経済学部3年\\学籍番号 2125178\\廣江友哉}
+
+\begin{document}
+
+\maketitle
+
+\section{データセットのシミュレーション}
+
+ソースコードは、\url{https://github.com/tomoyahiroe/replication-project} にある。リポジトリページ下部の README.md ファイルを参照いただきたい。各Problem Set についての説明を記述している。
+
+データセットは以下のように生成した。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = 0.8\hsize]{\$HOME/code_box/learn/R/replication-project/src/analyze/output/simulate_code.png}
+
+\end{figure}
+
+
+\section{分布の推定}
+
+\subsection{ヒストグラムを用いることの難しさを議論せよ}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \hsize]{\$HOME/code_box/learn/R/replication-project/src/analyze/output/figure/grid_hist.png}
+
+\end{figure}
+
+ヒストグラムはビンの幅によってデータの分布が著しく変わってしまう。運動神経 X のデータでヒストグラムを作成すると、bin = 10 のときは幅が大きすぎてデータの分布が見えにくく、bin = 0.1 のときは幅が小さすぎるためにヒストグラムが凸凹としていてデータの傾向がわかりにくい。このように、ヒストグラムで適切にデータの傾向を把握することは難しく、手動でビンの幅を何度も調整する必要がある。
+
+\subsection {カーネル密度}
+
+
+\end{document}
