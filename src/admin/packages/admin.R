@@ -5,7 +5,7 @@ main <- function(){
 
 
 dependencies_list <- function(){
-  lists <- c("pacman", "renv", "tidyverse", "box", "skimr", "gtsummary", "rstatix", "janitor", "scales", "flextable", "showtext", "ggplot2") 
+  lists <- c("pacman", "renv", "tidyverse", "box", "skimr", "gtsummary", "rstatix", "janitor", "scales", "flextable", "showtext", "ggplot2", "gridExtra") 
   return(lists)
 }
 
