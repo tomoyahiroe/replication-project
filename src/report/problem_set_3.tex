@@ -27,7 +27,7 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width = 0.8\hsize]{\$HOME/code_box/learn/R/replication-project/src/analyze/output/simulate_code.png}
+  \includegraphics[width = 0.6\hsize]{\$HOME/code_box/learn/R/replication-project/src/analyze/output/simulate_code.png}
 
 \end{figure}
 
@@ -44,6 +44,16 @@
 ヒストグラムはビンの幅によってデータの分布が著しく変わってしまう。運動神経 X のデータでヒストグラムを作成すると、bin = 10 のときは幅が大きすぎてデータの分布が見えにくく、bin = 0.1 のときは幅が小さすぎるためにヒストグラムが凸凹としていてデータの傾向がわかりにくい。このように、ヒストグラムで適切にデータの傾向を把握することは難しく、手動でビンの幅を何度も調整する必要がある。
 
 \subsection {カーネル密度}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \hsize]{\$HOME/code_box/learn/R/replication-project/src/analyze/output/figure/kernel_density.png}
+
+\end{figure}
+
+上図では、カーネルの幅を赤0.1, 黒デフォルト, 青10 として表時している。デフォルトが最も当てはまりが良いように見える。カーネル密度では、カーネルの幅が広がるほど曲線の滑らかさが増し広がりすぎるとデータの傾向が掴めなくなる。この傾向はヒストグラムがビンの幅を大きくするとデータの分布が見えにくくなることと似ている。
+
+\subsection{分位回帰}
+
 
 
 \end{document}
