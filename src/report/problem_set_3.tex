@@ -54,6 +54,17 @@
 
 \subsection{分位回帰}
 
+以下の回帰式を用いて、単回帰分析と分位回帰分析を行なった。
 
+\begin{displaymath}
+  \text{Z}_i = \beta_0 + \beta_1 \text{X}_i + \eta_i
+\end{displaymath}
+
+\begin{figure}[H]
+  \centering
+  \input{\$HOME/code_box/learn/R/replication-project/src/analyze/output/table/quantile_regression_table.tex}
+\end{figure}
+
+単純な最小二乗法による回帰分析と、分位回帰の結果を表にまとめた。平均値と中央値を比較するとXの係数にさほどの違いはない。一方で、下位25\%のデータについては、Xの係数がおおきく、上位25\%のデータについては、Xの係数が小さい。
 
 \end{document}

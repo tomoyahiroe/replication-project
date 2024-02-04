@@ -8,7 +8,7 @@ kernel_density <- ggplot2::ggplot(simulate_dataset, ggplot2::aes(x=X)) +
   ggplot2::geom_line(stat = "density", color="black") +
   ggplot2::geom_line(stat = "density", adjust=10, colour="blue") +
   ggplot2::ggtitle("Kernel Density Plot(band width 0.1, default, 10)") +
-  ggplot2::theme(text = ggplot2::element_text(size=84)) +
+  ggplot2::theme(text = ggplot2::element_text(size=80)) +
   ggplot2::xlab("運動神経X") +
   ggplot2::ylab("Density") 
 
