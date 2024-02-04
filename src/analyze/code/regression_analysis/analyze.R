@@ -1,4 +1,5 @@
 main <- function() {
+  # 相対パスを取得してデータを読み込む
   data <- readr::read_csv(basics$get_absolute_path("src/build/table_1/output/intermediate.csv"))
 
   # Switcher に該当する大学名をリスト化
@@ -30,10 +31,11 @@ main <- function() {
     dplyr::summarize(yearofsem = min(year)) %>%
     dplyr::ungroup()
 
-  # yearofsemとunitidを対応させたデータをswitcher_data に結合
+  # yearofsem, yaerstosem, treated を追加
   switcher_data <- switcher_data %>%
-		dplyr::left_join(yearofsem_unitid, by = "unitid") %>%
-		dplyr::mutate(yearstosem = year - yearofsem.x)
+		dplyr::left_join(yearofsem_unitid, by = "unitid") %>% # yearofsemを追加
+		dplyr::mutate(yearstosem = year - yearofsem.x) %>% # yearstosemを追加
+		dplyr::mutate(treated = dplyr::if_else(yearstosem < 0, 0, 1)) # treatedを追加
 
 }
 
