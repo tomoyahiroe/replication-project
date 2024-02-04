@@ -29,9 +29,9 @@ main <- function() {
   Z = Teamwork + 0.5 * Shoot + 0.5 * Speed + rnorm(500, mean = 0, sd = 1)
 
   # データフレームを作成
-  df = data.frame(X, Y, Speed, Shoot, Height, Age, Teamwork, Z)
+  simulate_dataset = data.frame(X, Y, Speed, Shoot, Height, Age, Teamwork, Z)
 
-  save(df, file = basics$get_absolute_path("src/analyze/output/data/simulate.rda"))
+  save(simulate_dataset, file = basics$get_absolute_path("src/analyze/output/data/simulate_dataset.rda"))
 
 }
 
