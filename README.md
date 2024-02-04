@@ -41,100 +41,151 @@ source("src/admin/master/admin.R")
 
 ## Problem Set 3 について
 
+### レポート本体
+
+- `src/report/problem_set_3.pdf`
+
+### 分析に使用したコード
+
+- `src/analyze/code/problem_set_3/*`
+
+### 分析結果の画像の場所
+
+- 表 `src/analyze/output/table/*`
+- 図 `src/analyze/output/figure/*`
+
+## 分析環境についての説明
+
+- renv と pacman
+
+プロジェクトごとにパッケージを管理し他者と環境を共有するために renv パッケージを使用しています。また、煩雑な依存関係周りのエラーが減ることを祈って pacman パッケージを使用しています。
+
+- .Rprofile ... セッション開始時に実行されます。
+
+renv のアクティベートと、初期化ファイルを読み込んでいます。
+
+```{r}
+source("renv/activate.R")
+# source("src/admin/packages/admin.R")
+source("src/admin/initialize/admin.R")
+```
+
+ファイルの中身は以下の通りで、[Peanuts Data Project](https://github.com/Chishio318/Peanuts-Data-Project)を参考にしました。
+個人的に追加したのは、perepare_japanese()でプロット内の日本語の文字化けを防ぐために、google-font を使用しています。
+
+```{r}
+main <- function(){
+  set_error_to_English()
+  prepare_packages()
+  prepare_japanese()
+}
+
+set_error_to_English <- function(){
+  Sys.setenv(LANG = "en_US.UTF-8")
+}
+
+prepare_packages <- function(){
+  renv::restore()
+  #devtools::update_packages(packages = TRUE)
+  library(magrittr)
+  library(here)
+  # tinytex::install_tinytex()
+  ggplot2::theme_set(ggplot2::theme_light())
+  options(box.path = here::here("src/admin"))
+}
+
+prepare_japanese <- function() {
+  ## Loading Google fonts (https://fonts.google.com/)
+  sysfonts::font_add_google("Gochi Hand", "gochi")
+  sysfonts::font_add_google("Schoolbell", "bell")
+
+  ## Automatically use showtext to render text
+  showtext::showtext_auto()
+}
+
+main()
+```
+
+- box パッケージと`src/admin/functions/*`
+
+`src/admin/functions/*` に使い回せそうな関数を定義して、box パッケージを使用して別ファイルで使用できるように設定しています。
+これも[Peanuts Data Project](https://github.com/Chishio318/Peanuts-Data-Project)を参考にしました。
+
+box パッケージの設定は、先ほどの初期化ファイルで行なっています。
+
 ## ディレクトリ構成
 
+### build
+
+master.csv の整形のために作成しました。
+
 ```
-src
-├── admin
-│   ├── functions
-│   │   ├── basics.R
-│   │   ├── df_modules.R
-│   │   └── plot_modules.R
-│   ├── initialize
-│   │   └── admin.R
-│   ├── master
-│   │   └── admin.R
-│   └── packages
-│       └── admin.R
-├── analyze
-│   ├── code
-│   │   ├── descriptive_statistics
-│   │   │   ├── 4yr_gradrate_trend
-│   │   │   │   └── analyze.R
-│   │   │   ├── scatter_plot
-│   │   │   │   └── analyze.R
-│   │   │   ├── semester_rate_trend
-│   │   │   │   └── analyze.R
-│   │   │   └── table
-│   │   │       └── analyze.R
-│   │   └── regression_analysis
+src/build/table_1
+├── code
+│   └── build.R
+└── output
+    └── intermediate.csv
+```
+
+### analyze
+
+code フォルダ内に、`descriptive_statistics`, `regression_analysis`, `problem_set_3`という 3 つのフォルダがあります。
+それぞれ、Problem_Set_2 の a、b, Problem_Set_3 に対応しています。
+
+```
+src/analyze/code
+├── descriptive_statistics
+│   ├── 4yr_gradrate_trend
+│   │   └── analyze.R
+│   ├── scatter_plot
+│   │   └── analyze.R
+│   ├── semester_rate_trend
+│   │   └── analyze.R
+│   └── table
+│       └── analyze.R
+├── problem_set_3
+│   ├── 01_simulate
+│   │   └── analyze.R
+│   ├── 02_estimate
+│   │   ├── analyze.R
+│   │   ├── histgram
+│   │   │   └── analyze.R
+│   │   ├── kdensity
+│   │   │   └── analyze.R
+│   │   └── quantile_regression
 │   │       └── analyze.R
-│   └── output
-│       ├── code.png
-│       ├── figure
-│       │   ├── gradrate_trend.png
-│       │   ├── lm_result_plot.png
-│       │   ├── lm_result_table.png
-│       │   ├── scatter_plots.png
-│       │   └── semester_trend.png
-│       └── table
-│           └── table_1.png
-├── build
-│   ├── covariates_ready
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       └── covariates_ready_data.rda
-│   ├── covariates_tidy
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       └── covariates_data.rda
-│   ├── gradrate_ready
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       └── gradrate_ready_data.rda
-│   ├── gradrate_tidy
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       └── gradrate_data.rda
-│   ├── master
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       ├── master.csv
-│   │       ├── master_data.csv
-│   │       └── master_data.rda
-│   ├── semester_dummy_tidy
-│   │   ├── code
-│   │   │   └── build.R
-│   │   └── output
-│   │       ├── semester_data.rda
-│   │       └── semester_dummy_data.rda
-│   └── table_1
-│       ├── code
-│       │   └── build.R
-│       └── output
-│           └── intermediate.csv
-└── report # レポート用のtexファイルとpdfファイル
-    ├── report.pdf
-    └── report.tex
+│   └── 03_nonlinear
+└── regression_analysis
+    └── analyze.R
 ```
 
-## 計測
+### report
+
+latex で書いたレポートをコンパイルして pdf にしています。
 
 ```
-github.com/AlDanial/cloc v 1.98  T=0.08 s (276.5 files/s, 541813.2 lines/s)
+src/report
+├── problem_set_2.pdf
+├── problem_set_2.synctex.gz
+├── problem_set_2.tex
+├── problem_set_3.pdf
+├── problem_set_3.synctex.gz
+├── problem_set_3.tex
+└── report.synctex.gz
+```
+
+## 計測(cloc)
+
+```
+github.com/AlDanial/cloc v 1.98  T=0.06 s (470.0 files/s, 702276.1 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSV                              3              0              0          42361
-R                               18            103            152            358
-TeX                              1             47              3             81
+R                               23            141            176            457
+TeX                              3             67              4            123
 -------------------------------------------------------------------------------
-SUM:                            22            150            155          42800
+SUM:                            29            208            180          42941
 -------------------------------------------------------------------------------
 
 ```
