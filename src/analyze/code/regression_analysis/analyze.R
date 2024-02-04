@@ -34,9 +34,38 @@ main <- function() {
   # yearofsem, yaerstosem, treated を追加
   switcher_data <- switcher_data %>%
 		dplyr::left_join(yearofsem_unitid, by = "unitid") %>% # yearofsemを追加
-		dplyr::mutate(yearstosem = year - yearofsem.x) %>% # yearstosemを追加
+		dplyr::mutate(yearstosem = year - yearofsem) %>% # yearstosemを追加
 		dplyr::mutate(treated = dplyr::if_else(yearstosem < 0, 0, 1)) # treatedを追加
 
+
+  # 保存したいフォルダパス
+    save_dir <- basics$get_absolute_path("src/analyze/output/figure/")
+  
+  # 線形回帰
+  lm_result <- lm(gradrate4yr ~ treated, data = switcher_data) 
+
+  lm_result_table <- broom::tidy(lm_result) %>%
+    gtsummary::tbl_summary()
+
+
+  ## 回帰した点と観測データを 1 つのデータフレームにまとめる
+  points <- broom::augment(lm_result)
+
+  ## 年齢を x 軸としてプロット
+  plot_lm_result <- ggplot2::ggplot(points, ggplot2::aes(x = treated)) + 
+    ## 身長を追加
+    ggplot2::geom_point(ggplot2::aes(y = gradrate4yr )) + 
+    ## 得られた回帰直線を追加
+    ggplot2::geom_line(ggplot2::aes(y = .fitted), colour = "red") +
+    ## グラフのタイトル
+    ggplot2::labs(title = "Linear regression result", x = "Treated", y = "Graduation rate") +
+    ## グラフのフォントサイズ
+    ggplot2::theme(panel.background = ggplot2::element_blank(), text = ggplot2::element_text(size = 24))
+
+  gt::gtsave(gtsummary::as_gt(lm_result_table),
+	     filename = basics$get_absolute_path("src/analyze/output/figure/lm_result_table.png"))
+  ggplot2::ggsave(filename = "lm_result_plot.png", plot = plot_lm_result, path = save_dir, 
+	  dpi = 320, device = "png")
 }
 
 
