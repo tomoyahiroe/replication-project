@@ -34,6 +34,32 @@ source("src/admin/master/admin.R")
 - 記述統計 `src/analyze/code/descriptive_statistics/*`
 - 回帰分析 `src/analyze/code/regression_analysis/analyze.R`
 
+### コードの実行方法
+
+- blank_result ブランチへ移動
+
+画像などのデータを削除してあるブランチです。コードの挙動を確かめるのに使えると思います。
+
+```{bash}
+git checkout -b blank_result
+
+git pull origin blank_result
+```
+
+- (できれば CLI で replication-project まで移動して R を実行)
+
+最初に R セッションを開始すると、めちゃくちゃパッケージのインストールが始まります。(多分)
+
+```{bash}
+R
+```
+
+```{r}
+source("src/admin/master/admin.R")
+```
+
+上記のコードを実行すれば、必要な画像等のデータは output フォルダ内に出現するはずです。
+
 ### 分析結果の画像の場所
 
 - 表 `src/analyze/output/table/*`
@@ -48,6 +74,10 @@ source("src/admin/master/admin.R")
 ### 分析に使用したコード
 
 - `src/analyze/code/problem_set_3/*`
+
+### コードの実行方法
+
+Problem_Set_2 と同じです。
 
 ### 分析結果の画像の場所
 
