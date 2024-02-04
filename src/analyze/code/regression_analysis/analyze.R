@@ -51,9 +51,7 @@ main <- function() {
   ## 回帰した点と観測データを 1 つのデータフレームにまとめる
   points <- broom::augment(lm_result)
 
-  ## 年齢を x 軸としてプロット
   plot_lm_result <- ggplot2::ggplot(points, ggplot2::aes(x = treated)) + 
-    ## 身長を追加
     ggplot2::geom_point(ggplot2::aes(y = gradrate4yr )) + 
     ## 得られた回帰直線を追加
     ggplot2::geom_line(ggplot2::aes(y = .fitted), colour = "red") +
